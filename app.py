@@ -108,8 +108,8 @@ def new_track(raw = Body(), option=0):
 
     #===========================================================================================================
 
-    uri = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
-    client = MongoClient(uri)
+    MONGODB_URI = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
+    client = MongoClient(MONGODB_URI)
 
     try:
         client.admin.command('ping')
@@ -129,8 +129,8 @@ def new_track(raw = Body(), option=0):
 @app.get("/api")
 def get_old_tracks():
 
-    uri = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
-    client = MongoClient(uri)
+    MONGODB_URI = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
+    client = MongoClient(MONGODB_URI)
 
     try:
         client.admin.command('ping')
