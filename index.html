@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>работаешь?</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="url" class="main">
+    <p>зачем ты здесь наташ хочешь отследить товар</p>
+    <p>
+        хорошо тогда нужно ввести ссылку и размер:
+        <br></br>
+        <p></p>
+        <input name="link" id="link" placeholder="ссылка на яблоко">
+        <input name="size" id="size" placeholder="размер в мл/грамм">
+    </p>
+    <br>
+    <button type="button" class="btn bouncy" onclick="send()">получить инфу</button>
+    <button type="button" class="btn bouncy" style="animation-delay:0.07s" onclick="send()">второй вариант</button>
+    </div>
+    <table class="main">
+        <thead><tr><th>товар</th><th>бренд</th><th>цена</th><th>ссылка</th><th>наличие</th></tr></thead>
+        <tbody>
+        </tbody>
+    </table>
+<script>
+
+    async function send() {
+ 
+        // получаем введеное в поле имя и возраст
+        const link = document.getElementById("link").value;
+        const size = document.getElementById("size").value;
+
+        // отправляем запрос
+        const response = await fetch("/", {
+                method: "POST",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                    info: link,
+                    size: size
+                })
+            });
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById("url").textContent = data.url;
+            }
+            else
+                console.log(response);
+    }
+
+    // создание строки для таблицы
+    function row(item) {
+            
+        const tr = document.createElement("tr");
+
+        const nameTd = document.createElement("td");
+        nameTd.append(item["name"]);
+        tr.append(nameTd);
+
+        const brandTd = document.createElement("td");
+        brandTd.append(item["brand"]);
+        tr.append(brandTd);
+
+        const priceTd = document.createElement("td");
+        priceTd.append(item["price"]);
+        tr.append(priceTd);
+
+        const linkTd = document.createElement("td");
+        linkTd.append(item["link"]);
+        tr.append(linkTd);
+
+        const availTd = document.createElement("td");
+        availTd.append(item["avail"]);
+        tr.append(availTd);
+
+        return tr;
+    }
+
+    async function getUsers() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const users = await response.json();
+                const rows = document.querySelector("tbody");
+                // добавляем полученные элементы в таблицу
+                users.forEach(user => rows.append(row(user)));
+            }
+            else
+                console.log(response)
+    }    
+    getUsers();
+</script>
+</body>
+</html>
