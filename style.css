@@ -1,0 +1,58 @@
+body {
+    font-weight: lighter;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px; 
+}   
+
+.main {
+    font-weight: lighter;
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    text-align: center;
+    padding-top: 15%;
+}
+
+tbody {
+    font-size: medium;
+}
+
+.btn {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+    padding: 10px;
+    margin: 10px
+}
+
+.btn:hover {
+    background-color: aliceblue;
+    transition: 0.7s;
+}
+
+.btn:focus {
+    outline-color: transparent;
+    outline-style: solid;
+    box-shadow: 0 0 0 5px aliceblue;
+    transition: 0.7s;
+}
+
+.btn:active {
+    background-color: rebeccapurple
+}
+
+.bouncy {
+    animation: bouncy 4s infinite linear;
+    position: relative;
+    }
+
+    @keyframes bouncy {
+    0%{top:0em}
+    40%{top:0em}
+    43%{top:-2em}
+    46%{top:0em}
+    48%{top:-1em}
+    50%{top:0em}
+    100%{top:0em;}
+    }
