@@ -37,7 +37,7 @@ def root():
     """
     just a root
     """
-    return FileResponse("statics/index.html")
+    return FileResponse("index.html")
 
 # ALMOST COMPLETE: create a new tracked entry
 @app.post("/")
@@ -108,8 +108,8 @@ def new_track(raw = Body(), option=0):
 
     #===========================================================================================================
 
-    MONGODB_URI = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
-    client = MongoClient(MONGODB_URI)
+    uri = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
+    client = MongoClient(uri)
 
     try:
         client.admin.command('ping')
@@ -129,8 +129,8 @@ def new_track(raw = Body(), option=0):
 @app.get("/api")
 def get_old_tracks():
 
-    MONGODB_URI = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
-    client = MongoClient(MONGODB_URI)
+    uri = "mongodb+srv://stardain:vn6iFbtaBwHpTUFj@pricetracker.jikbguc.mongodb.net/?appName=pricetracker"
+    client = MongoClient(uri)
 
     try:
         client.admin.command('ping')
@@ -148,6 +148,6 @@ def get_old_tracks():
     return all_items
 
 
-app.mount("/", StaticFiles(directory="statics", html=True))
+app.mount("/", StaticFiles(directory="/", html=True))
 
 #===========================================================================================================
