@@ -148,6 +148,6 @@ def get_old_tracks():
     return all_items
 
 
-app.mount("/", StaticFiles(directory="/", html=True))
+app.mount("/", StaticFiles(directory="statics", html=True))
 
 #===========================================================================================================
